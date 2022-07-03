@@ -4,6 +4,7 @@ const login = document.querySelector('.login');
 const urlAPI = 'https://todoo.5xcamp.us';
 let obj = {};
 
+// 建立登入函式
 function callLogIn() {
   const email = accountLogIn.value;
   const password = passwordLogIn.value;
@@ -36,11 +37,15 @@ function callLogIn() {
 }
 
 document.addEventListener('click', function(e) {
+  // 觸發登入
   if (e.target.className === 'login'){
+    // 判斷欄位必須輸入值
     if (accountLogIn.value === '' || passwordLogIn.value === ''){
       return Swal.fire('請輸入值')
     }
+    // 進行登入
     callLogIn();
+    // 登入後清空欄位值
     accountLogIn.value = '';
     passwordLogIn.value = '';
   }
