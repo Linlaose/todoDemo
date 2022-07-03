@@ -5,6 +5,7 @@ const signUp = document.querySelector('.signup');
 const urlAPI = "https://todoo.5xcamp.us";
 let obj = {};
 
+// 宣告註冊函式
 function callSignUp() {
   const email = accountSignUp.value;
   const nickname = nicknameSignUp.value;
@@ -39,11 +40,15 @@ function callSignUp() {
 };
 document.addEventListener('click', function (e) {
   e.preventDefault();
+  // 觸發註冊
   if (e.target.className === 'signup'){
+    // 判斷輸入不得空值
     if (accountSignUp.value === '' || nicknameSignUp.value === '' || passwordSignUp.value === ''){
       return Swal.fire('請輸入值')
     }
+    // 進行註冊
     callSignUp();
+    // 註冊後欄位清除
     accountSignUp.value = '';
     nicknameSignUp.value = '';
     passwordSignUp.value = '';
