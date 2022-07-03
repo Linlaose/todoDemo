@@ -38,7 +38,7 @@ function callSignUp() {
       });
     });
 };
-document.addEventListener('click', function (e) {
+signUp.addEventListener('click', function (e) {
   e.preventDefault();
   // 觸發註冊
   if (e.target.className === 'signup'){
