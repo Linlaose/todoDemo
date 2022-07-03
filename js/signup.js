@@ -38,8 +38,7 @@ function callSignUp() {
       });
     });
 };
-signUp.addEventListener('click', function (e) {
-  e.preventDefault();
+document.addEventListener('click', function (e) {
   // 觸發註冊
   if (e.target.className === 'signup'){
     // 判斷輸入不得空值
