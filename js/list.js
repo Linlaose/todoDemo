@@ -3,6 +3,8 @@ import { getTodo } from "./render.js";
 const add = document.querySelector('.todoList');
 const token = JSON.parse(localStorage.getItem('token'));
 const urlAPI = 'https://todoo.5xcamp.us';
+let list = [];
+let delID = '';
 
 // 增加待辦事項函式
 function addTodo() {
@@ -34,6 +36,24 @@ function addTodo() {
       console.log(err);
     });
 }
+
+// 刪除待辦事項函式
+function delTodo() {
+  list = JSON.parse(localStorage.getItem('list'));
+
+  axios.delete(`${urlAPI}/todos/${delID}`, {
+    headers: {
+      Authorization: token
+    }
+  })
+    .then(function (response) {
+      console.log(response);
+      getTodo();
+    })
+    .catch(function (err) {
+      console.log(err)});
+}
+
 // 觸發增加待辦事項
 document.addEventListener('click', function (e) {
   if (e.target.className === 'addItem'){
@@ -41,4 +61,8 @@ document.addEventListener('click', function (e) {
     addTodo.value = '';
     getTodo();
   }
-})
+  else if (e.target.value === 'delete'){
+    delID = (e.target.closest(':not(input)').getAttribute('data-id'));
+    delTodo(delID);
+  }
+});
