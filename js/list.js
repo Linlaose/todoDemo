@@ -1,4 +1,4 @@
-import { renderPage } from "./render.js";
+import { getTodo } from "./render.js";
 
 const add = document.querySelector('.todoList');
 const token = JSON.parse(localStorage.getItem('token'));
@@ -27,8 +27,7 @@ function addTodo() {
     }
   })
     .then(function (response) {
-      console.log(response);
-      renderPage();
+      getTodo();
     })
     .catch(function (err) {
       console.log(err);
@@ -39,5 +38,6 @@ document.addEventListener('click', function (e) {
   if (e.target.className === 'addItem'){
     addTodo();
     addTodo.value = '';
+    getTodo();
   }
 })
