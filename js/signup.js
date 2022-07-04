@@ -30,6 +30,8 @@ function callSignUp() {
           console.log('轉換')
         }
       });
+      // 將暱稱儲存為使用者名稱，以便渲染在 todo 頁面
+      localStorage.setItem('userName', JSON.stringify(nickname));
     })
     .catch(function (err) {
       Swal.fire({
