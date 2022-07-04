@@ -5,6 +5,7 @@ const token = JSON.parse(localStorage.getItem('token'));
 const urlAPI = 'https://todoo.5xcamp.us';
 let list = [];
 let delID = '';
+let editID = '';
 
 // 增加待辦事項函式
 function addTodo() {
@@ -51,6 +52,26 @@ function delTodo() {
       console.log(err)});
 }
 
+// 編輯待辦事項函式
+function editTodo() {
+  axios.put(`${urlAPI}/todos/${editID}`, {
+    "todo": {
+      "content": '456'
+    }
+  }, {
+    headers: {
+      Authorization: token
+    }
+  })
+    .then(function (response) {
+      console.log(response);
+      getTodo();
+    })
+    .catch(function (err) {
+      console.log(err)
+    });
+}
+
 // 觸發增加待辦事項
 document.addEventListener('click', function (e) {
   if (e.target.className === 'addItem'){
@@ -61,5 +82,9 @@ document.addEventListener('click', function (e) {
   else if (e.target.value === 'delete'){
     delID = (e.target.closest(':not(input)').getAttribute('data-id'));
     delTodo(delID);
+  }
+  else if (e.target.value === 'edit') {
+    editID = (e.target.closest(':not(input)').getAttribute('data-id'));
+    editTodo(editID);
   }
 });
