@@ -18,7 +18,6 @@ function getTodo(){
 
   axios.get(`${urlAPI}/todos`, obj)
     .then(function(response) {
-      console.log(response);
       localStorage.setItem('list', JSON.stringify(response.data.todos));
     })
     .catch(function (err) {
