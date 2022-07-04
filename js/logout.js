@@ -35,7 +35,7 @@ function callLogOut() {
       }).then((result) => {
         /* Read more about handling dismissals below */
         if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer')
+          console.log('轉換')
         }
       })
     })
@@ -50,3 +50,11 @@ function callLogOut() {
 if (document.body.className === 'todoPage') {
   renderPage();
 }
+
+document.addEventListener('click', function (e) {
+  if (e.target.className === 'logOut') {
+    callLogOut();
+    accountLogOut.value = '';
+    passwordLogOut.value = '';
+  };
+});
