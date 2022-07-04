@@ -55,7 +55,7 @@ function delTodo() {
 document.addEventListener('click', function (e) {
   if (e.target.className === 'addItem'){
     addTodo();
-    addTodo.value = '';
+    add.value = '';
     getTodo();
   }
   else if (e.target.value === 'delete'){
