@@ -11,7 +11,7 @@ function renderPage() {
   userName.textContent = `${JSON.parse(localStorage.getItem('userName'))} 的待辦`;
 
   list.forEach(function (item, index) {
-    el += `<li data-id=${item.id}>${item.content} <input type='button' data-num=${index} value='delete'></li>`;
+    el += `<li data-id=${item.id}>${item.content} <input type='button' data-num=${index} value='edit'> <input type='button' data-num=${index} value='delete'></li>`;
   });
 
   todoList.innerHTML = el;
