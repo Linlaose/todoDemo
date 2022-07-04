@@ -39,15 +39,12 @@ function addTodo() {
 
 // 刪除待辦事項函式
 function delTodo() {
-  list = JSON.parse(localStorage.getItem('list'));
-
   axios.delete(`${urlAPI}/todos/${delID}`, {
     headers: {
       Authorization: token
     }
   })
     .then(function (response) {
-      console.log(response);
       getTodo();
     })
     .catch(function (err) {
