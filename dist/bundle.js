@@ -15,7 +15,7 @@
   \********************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack://tododemo/./js/list.js?");
+eval("const add = document.querySelector('.todoList');\r\nconst token = JSON.parse(localStorage.getItem('token'));\r\nconst urlAPI = 'https://todoo.5xcamp.us';\r\n\r\nfunction addTodo() {\r\n  const addContent = add.value;\r\n\r\n  // let obj = {\r\n  //   \"todo\": {\r\n  //     \"content\": addContent\r\n  //   },\r\n  //   headers: {\r\n  //     Authorization: token\r\n  //   }\r\n  // };\r\n\r\n  axios.post(`${urlAPI}/todos`, {\r\n    \"todo\": {\r\n      \"content\": addContent\r\n    }\r\n  }, {\r\n    headers: {\r\n      Authorization: token\r\n    }\r\n  })\r\n    .then(function (response) {\r\n      console.log(response);\r\n      // localStorage.setItem('id', response.data.id);\r\n    })\r\n    .catch(function (err) {\r\n      console.log(err);\r\n    });\r\n}\r\n\r\ndocument.addEventListener('click', function (e) {\r\n  if (e.target.className === 'addItem'){\r\n    addTodo();\r\n    addTodo.value = '';\r\n  }\r\n})\n\n//# sourceURL=webpack://tododemo/./js/list.js?");
 
 /***/ }),
 
@@ -45,7 +45,7 @@ eval("const accountLogOut = document.querySelector('.account-logOut');\r\nconst 
   \**********************/
 /***/ (() => {
 
-eval("const userName = document.querySelector('.todoInsert');\r\nconst token = JSON.parse(localStorage.getItem('token'));\r\nconst urlAPI = 'https://todoo.5xcamp.us';\r\n\r\n\r\n// 渲染畫面函式\r\nfunction renderPage() {\r\n  userName.textContent = `${JSON.parse(localStorage.getItem('userName'))} 的待辦`;\r\n  getTodo();\r\n};\r\n\r\nfunction getTodo(){\r\n  let obj = {\r\n    headers: {\r\n      Authorization: token\r\n    }\r\n  };\r\n\r\n  axios.get(`${urlAPI}/todos`, obj)\r\n    .then(function(response) {\r\n      localStorage.setItem('list', JSON.stringify(response.data.todos));\r\n    })\r\n    .catch(function (err) {\r\n      console.log(err);\r\n    });\r\n}\r\n\r\n// 判斷是否為 todo 頁面後，再進行畫面渲染\r\nif (document.body.className === 'todoPage') {\r\n  renderPage();\r\n}\n\n//# sourceURL=webpack://tododemo/./js/render.js?");
+eval("const userName = document.querySelector('.todoInsert');\r\nconst token = JSON.parse(localStorage.getItem('token'));\r\nconst urlAPI = 'https://todoo.5xcamp.us';\r\n\r\n\r\n// 渲染畫面函式\r\nfunction renderPage() {\r\n  userName.textContent = `${JSON.parse(localStorage.getItem('userName'))} 的待辦`;\r\n  getTodo();\r\n  console.log('render');\r\n};\r\n\r\nfunction getTodo(){\r\n  let obj = {\r\n    headers: {\r\n      Authorization: token\r\n    }\r\n  };\r\n\r\n  axios.get(`${urlAPI}/todos`, obj)\r\n    .then(function(response) {\r\n      localStorage.setItem('list', JSON.stringify(response.data.todos));\r\n    })\r\n    .catch(function (err) {\r\n      console.log(err);\r\n    });\r\n}\r\n\r\n// 判斷是否為 todo 頁面後，再進行畫面渲染\r\nif (document.body.className === 'todoPage') {\r\n  renderPage();\r\n}\n\n//# sourceURL=webpack://tododemo/./js/render.js?");
 
 /***/ }),
 

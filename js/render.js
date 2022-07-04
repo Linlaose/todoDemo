@@ -7,6 +7,7 @@ const urlAPI = 'https://todoo.5xcamp.us';
 function renderPage() {
   userName.textContent = `${JSON.parse(localStorage.getItem('userName'))} 的待辦`;
   getTodo();
+  console.log('render');
 };
 
 function getTodo(){
