@@ -9,6 +9,16 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./js/list.js":
+/*!********************!*\
+  !*** ./js/list.js ***!
+  \********************/
+/***/ (() => {
+
+eval("\n\n//# sourceURL=webpack://tododemo/./js/list.js?");
+
+/***/ }),
+
 /***/ "./js/login.js":
 /*!*********************!*\
   !*** ./js/login.js ***!
@@ -25,7 +35,17 @@ eval("const accountLogIn = document.querySelector('.account-login');\r\nconst pa
   \**********************/
 /***/ (() => {
 
-eval("const userName = document.querySelector('.todoInsert');\r\nconst accountLogOut = document.querySelector('.account-logOut');\r\nconst passwordLogOut = document.querySelector('.password-logOut');\r\nconst urlAPI = 'https://todoo.5xcamp.us';\r\nconst token = JSON.parse(localStorage.getItem('token'));\r\n\r\n// 渲染畫面函式\r\nfunction renderPage() {\r\n  userName.textContent = `${JSON.parse(localStorage.getItem('userName'))} 的待辦`;\r\n};\r\n\r\n// 登出函式\r\nfunction callLogOut() {\r\n  // 定義 headers 資訊給出 token\r\n  let obj = {\r\n    headers: {\r\n      Authorization: token\r\n    }\r\n  }\r\n  axios.delete(`${urlAPI}/users/sign_out`, obj)\r\n    .then (function (response) {\r\n      // 登出成功後跳出登出視窗\r\n      let timerInterval\r\n      Swal.fire({\r\n        icon: 'success',\r\n        title: '登出成功!',\r\n        html: '將於 <b></b> milliseconds 後轉換頁面',\r\n        timer: 2000,\r\n        timerProgressBar: true,\r\n        didOpen: () => {\r\n          Swal.showLoading()\r\n          const b = Swal.getHtmlContainer().querySelector('b')\r\n          timerInterval = setInterval(() => {\r\n            b.textContent = Swal.getTimerLeft()\r\n          }, 100)\r\n        },\r\n        willClose: () => {\r\n          clearInterval(timerInterval)\r\n        }\r\n      }).then((result) => {\r\n        /* Read more about handling dismissals below */\r\n        if (result.dismiss === Swal.DismissReason.timer) {\r\n          window.location.href = 'login.html';\r\n        }\r\n      })\r\n    })\r\n    // 登出失敗後跳出錯誤視窗\r\n    .catch(function (err) {\r\n      Swal.fire({\r\n        icon: 'error',\r\n        title: `${err.response.data.message}`,\r\n      });\r\n    });\r\n}\r\n\r\n// 判斷是否為 todo 頁面後，再進行畫面渲染\r\nif (document.body.className === 'todoPage') {\r\n  renderPage();\r\n}\r\n\r\n// 觸發登出功能\r\ndocument.addEventListener('click', function (e) {\r\n  if (e.target.className === 'logOut') {\r\n    callLogOut();\r\n    // 登出後清空欄位值\r\n    accountLogOut.value = '';\r\n    passwordLogOut.value = '';\r\n    // 登出後清空 localStorage\r\n    localStorage.clear();\r\n  };\r\n});\n\n//# sourceURL=webpack://tododemo/./js/logout.js?");
+eval("const accountLogOut = document.querySelector('.account-logOut');\r\nconst passwordLogOut = document.querySelector('.password-logOut');\r\nconst urlAPI = 'https://todoo.5xcamp.us';\r\nconst token = JSON.parse(localStorage.getItem('token'));\r\n\r\n// 登出函式\r\nfunction callLogOut() {\r\n  // 定義 headers 資訊給出 token\r\n  let obj = {\r\n    headers: {\r\n      Authorization: token\r\n    }\r\n  }\r\n  axios.delete(`${urlAPI}/users/sign_out`, obj)\r\n    .then (function (response) {\r\n      // 登出成功後跳出登出視窗\r\n      let timerInterval\r\n      Swal.fire({\r\n        icon: 'success',\r\n        title: '登出成功!',\r\n        html: '將於 <b></b> milliseconds 後轉換頁面',\r\n        timer: 2000,\r\n        timerProgressBar: true,\r\n        didOpen: () => {\r\n          Swal.showLoading()\r\n          const b = Swal.getHtmlContainer().querySelector('b')\r\n          timerInterval = setInterval(() => {\r\n            b.textContent = Swal.getTimerLeft()\r\n          }, 100)\r\n        },\r\n        willClose: () => {\r\n          clearInterval(timerInterval)\r\n        }\r\n      }).then((result) => {\r\n        /* Read more about handling dismissals below */\r\n        if (result.dismiss === Swal.DismissReason.timer) {\r\n          window.location.href = 'login.html';\r\n        }\r\n      })\r\n    })\r\n    // 登出失敗後跳出錯誤視窗\r\n    .catch(function (err) {\r\n      Swal.fire({\r\n        icon: 'error',\r\n        title: `${err.response.data.message}`,\r\n      });\r\n    });\r\n}\r\n\r\n// 觸發登出功能\r\ndocument.addEventListener('click', function (e) {\r\n  if (e.target.className === 'logOut') {\r\n    callLogOut();\r\n    // 登出後清空欄位值\r\n    accountLogOut.value = '';\r\n    passwordLogOut.value = '';\r\n    // 登出後清空 localStorage\r\n    localStorage.clear();\r\n  };\r\n});\n\n//# sourceURL=webpack://tododemo/./js/logout.js?");
+
+/***/ }),
+
+/***/ "./js/render.js":
+/*!**********************!*\
+  !*** ./js/render.js ***!
+  \**********************/
+/***/ (() => {
+
+eval("const userName = document.querySelector('.todoInsert');\r\n\r\n// 渲染畫面函式\r\nfunction renderPage() {\r\n  userName.textContent = `${JSON.parse(localStorage.getItem('userName'))} 的待辦`;\r\n};\r\n\r\n// 判斷是否為 todo 頁面後，再進行畫面渲染\r\nif (document.body.className === 'todoPage') {\r\n  renderPage();\r\n}\n\n//# sourceURL=webpack://tododemo/./js/render.js?");
 
 /***/ }),
 
@@ -46,7 +66,7 @@ eval("const accountSignUp = document.querySelector('.account-signup');\r\nconst 
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_login_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/login.js */ \"./js/login.js\");\n/* harmony import */ var _js_login_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_login_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _js_logout_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/logout.js */ \"./js/logout.js\");\n/* harmony import */ var _js_logout_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_js_logout_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _js_signup_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/signup.js */ \"./js/signup.js\");\n/* harmony import */ var _js_signup_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_signup_js__WEBPACK_IMPORTED_MODULE_2__);\n\r\n\r\n\n\n//# sourceURL=webpack://tododemo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_login_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../js/login.js */ \"./js/login.js\");\n/* harmony import */ var _js_login_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_login_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _js_logout_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../js/logout.js */ \"./js/logout.js\");\n/* harmony import */ var _js_logout_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_js_logout_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _js_signup_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../js/signup.js */ \"./js/signup.js\");\n/* harmony import */ var _js_signup_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_js_signup_js__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _js_list_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../js/list.js */ \"./js/list.js\");\n/* harmony import */ var _js_list_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_js_list_js__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _js_render_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../js/render.js */ \"./js/render.js\");\n/* harmony import */ var _js_render_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_js_render_js__WEBPACK_IMPORTED_MODULE_4__);\n\r\n\r\n\r\n\r\n\n\n//# sourceURL=webpack://tododemo/./src/index.js?");
 
 /***/ })
 

@@ -1,13 +1,7 @@
-const userName = document.querySelector('.todoInsert');
 const accountLogOut = document.querySelector('.account-logOut');
 const passwordLogOut = document.querySelector('.password-logOut');
 const urlAPI = 'https://todoo.5xcamp.us';
 const token = JSON.parse(localStorage.getItem('token'));
-
-// 渲染畫面函式
-function renderPage() {
-  userName.textContent = `${JSON.parse(localStorage.getItem('userName'))} 的待辦`;
-};
 
 // 登出函式
 function callLogOut() {
@@ -51,11 +45,6 @@ function callLogOut() {
         title: `${err.response.data.message}`,
       });
     });
-}
-
-// 判斷是否為 todo 頁面後，再進行畫面渲染
-if (document.body.className === 'todoPage') {
-  renderPage();
 }
 
 // 觸發登出功能
