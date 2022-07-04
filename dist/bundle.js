@@ -25,7 +25,7 @@ eval("const accountLogIn = document.querySelector('.account-login');\r\nconst pa
   \**********************/
 /***/ (() => {
 
-eval("const userName = document.querySelector('.todoInsert');\r\n\r\nfunction renderPage() {\r\n  userName.textContent = `${JSON.parse(localStorage.getItem('userName'))} 的待辦`;\r\n};\r\nrenderPage();\n\n//# sourceURL=webpack://tododemo/./js/logout.js?");
+eval("const userName = document.querySelector('.todoInsert');\r\n\r\nif (document.body.className === 'todoPage') {\r\n  function renderPage() {\r\n    userName.textContent = `${JSON.parse(localStorage.getItem('userName'))} 的待辦`;\r\n  };\r\n  renderPage();\r\n}\n\n//# sourceURL=webpack://tododemo/./js/logout.js?");
 
 /***/ }),
 
