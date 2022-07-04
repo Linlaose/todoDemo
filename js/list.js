@@ -73,17 +73,20 @@ function editTodo() {
     });
 }
 
-// 觸發增加待辦事項
+// 觸發待辦事項
 document.addEventListener('click', function (e) {
+  // 新增待辦事項
   if (e.target.className === 'addItem'){
     addTodo();
     add.value = '';
     getTodo();
   }
+  // 刪除待辦事項
   else if (e.target.value === 'delete'){
     delID = (e.target.closest(':not(input)').getAttribute('data-id'));
     delTodo(delID);
   }
+  // 編輯待辦事項
   else if (e.target.value === 'edit') {
     editID = (e.target.closest(':not(input)').getAttribute('data-id'));
     (async () => {
