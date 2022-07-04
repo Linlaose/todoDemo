@@ -4,6 +4,7 @@ const add = document.querySelector('.todoList');
 const token = JSON.parse(localStorage.getItem('token'));
 const urlAPI = 'https://todoo.5xcamp.us';
 
+// 增加待辦事項函式
 function addTodo() {
   const addContent = add.value;
 
@@ -33,7 +34,7 @@ function addTodo() {
       console.log(err);
     });
 }
-
+// 觸發增加待辦事項
 document.addEventListener('click', function (e) {
   if (e.target.className === 'addItem'){
     addTodo();
