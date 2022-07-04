@@ -18,6 +18,7 @@ function callLogIn() {
   axios.post(`${urlAPI}/users/sign_in`, obj)
     .then(function(response) {
       localStorage.setItem('token', JSON.stringify(response.headers.authorization))
+      localStorage.setItem('userName', JSON.stringify(response.data.nickname))
       Swal.fire({
         title: '登入成功',
         icon: 'success',
