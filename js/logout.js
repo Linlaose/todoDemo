@@ -22,6 +22,7 @@ function callLogOut() {
       // 登出成功後跳出登出視窗
       let timerInterval
       Swal.fire({
+        icon: 'success',
         title: '登出成功!',
         html: '將於 <b></b> milliseconds 後轉換頁面',
         timer: 2000,
@@ -39,7 +40,7 @@ function callLogOut() {
       }).then((result) => {
         /* Read more about handling dismissals below */
         if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('轉換')
+          window.location.href = 'login.html';
         }
       })
     })
@@ -61,7 +62,10 @@ if (document.body.className === 'todoPage') {
 document.addEventListener('click', function (e) {
   if (e.target.className === 'logOut') {
     callLogOut();
+    // 登出後清空欄位值
     accountLogOut.value = '';
     passwordLogOut.value = '';
+    // 登出後清空 localStorage
+    localStorage.clear();
   };
 });

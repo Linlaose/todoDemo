@@ -27,7 +27,7 @@ function callSignUp() {
         confirmButtonText: 'ok'
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log('轉換')
+          window.location.href = 'login.html';
         }
       });
       // 將暱稱儲存為使用者名稱，以便渲染在 todo 頁面

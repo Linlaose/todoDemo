@@ -25,7 +25,7 @@ function callLogIn() {
         confirmButtonText: 'ok'
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log('轉換')
+          window.location.href = 'todo.html';
         }
       });
     })
