@@ -6,6 +6,7 @@ const urlAPI = 'https://todoo.5xcamp.us';
 let list = [];
 let delID = '';
 let editID = '';
+let editContent = '';
 
 // 增加待辦事項函式
 function addTodo() {
@@ -56,7 +57,7 @@ function delTodo() {
 function editTodo() {
   axios.put(`${urlAPI}/todos/${editID}`, {
     "todo": {
-      "content": '456'
+      "content": editContent
     }
   }, {
     headers: {
@@ -85,6 +86,21 @@ document.addEventListener('click', function (e) {
   }
   else if (e.target.value === 'edit') {
     editID = (e.target.closest(':not(input)').getAttribute('data-id'));
-    editTodo(editID);
+    (async () => {
+      const { value: content } = await Swal.fire({
+        title: '編輯內容為：',
+        input: 'text',
+        inputValidator: (value) => {
+          if (!value) {
+            return '不得為空值'
+          }
+        }
+      })
+      if (content) {
+        Swal.fire(`變更成功`)
+        editContent = content
+        editTodo(editContent, editID);
+      }
+    })()
   }
 });
