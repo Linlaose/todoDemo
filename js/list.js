@@ -1,11 +1,13 @@
 import { getTodo } from "./render.js";
 
 const add = document.querySelector('.todoList');
+const check = document.querySelector('.checkStatus');
 const token = JSON.parse(localStorage.getItem('token'));
 const urlAPI = 'https://todoo.5xcamp.us';
 let list = [];
 let delID = '';
 let editID = '';
+let toggleID = '';
 let editContent = '';
 
 // 增加待辦事項函式
@@ -73,13 +75,27 @@ function editTodo() {
     });
 }
 
+// 更新待辦事項狀態
+function toggleTodo() {
+  axios.patch(`${urlAPI}/todos/{toggleID}/toggle`, {
+    headers: {
+      Authorization: token
+    }
+  })
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (err) {
+      console.log(err)
+    });
+}
+
 // 觸發待辦事項
 document.addEventListener('click', function (e) {
   // 新增待辦事項
   if (e.target.className === 'addItem'){
     addTodo();
     add.value = '';
-    getTodo();
   }
   // 刪除待辦事項
   else if (e.target.value === 'delete'){
@@ -105,5 +121,10 @@ document.addEventListener('click', function (e) {
         editTodo(editContent, editID);
       }
     })()
+  }
+  // 更新待辦事項狀態
+  else if (e.target.className === 'checkStatus') {
+    toggleID = (e.target.closest(':not(input)').getAttribute('data-id'));
+    toggleTodo(token, toggleID);
   }
 });
