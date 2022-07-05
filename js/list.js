@@ -83,7 +83,7 @@ function toggleTodo() {
   })
     .then(function (response) {
       console.log(response)
-      // getTodo();
+      getTodo();
     })
     .catch(function (err) {
       console.log(err)
