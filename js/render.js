@@ -1,6 +1,7 @@
 const userName = document.querySelector('.todoInsert');
 const token = JSON.parse(localStorage.getItem('token'));
 const todoList = document.querySelector('ul');
+const pendingCount = document.querySelector('.pendingItem');
 const urlAPI = 'https://todoo.5xcamp.us';
 let list = [];
 
@@ -26,6 +27,7 @@ function renderPage() {
 
   console.log(unCompleted.length); // 未完成數
   todoList.innerHTML = el;
+  pendingCount.textContent = `${unCompleted.length} 個待完成項目`
   console.log('render');
 };
 
