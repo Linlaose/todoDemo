@@ -39,7 +39,6 @@ export function getTodo(){
   axios.get(`${urlAPI}/todos`, obj)
     .then(function(response) {
       localStorage.setItem('list', JSON.stringify(response.data.todos));
-      list = JSON.parse(localStorage.getItem('list'));
       renderPage();
     })
     .catch(function (err) {
@@ -52,7 +51,6 @@ if (document.body.className === 'todoPage') {
   getTodo();
 }
 
-// 判斷已完成和未完成項目(未完成含項目數)
 // 清除已完成項目
 // ================================================================
 // completed.forEach(function (item) {
