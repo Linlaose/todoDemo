@@ -24,14 +24,13 @@ function renderPage() {
   const completed = list.filter((item) => {
     return item.completed_at !== null
   })
-
   // 從已完成項目陣列中取出 ID 另存新陣列
   const completedID = completed.map((item) => {
     return item.id;
   });
-  console.log(completedID);
-  console.log(unCompleted.length); // 未完成數
+  localStorage.setItem('completedID', JSON.stringify(completedID));
   todoList.innerHTML = el;
+  // console.log(unCompleted.length); // 未完成數
   pendingCount.textContent = `${unCompleted.length} 個待完成項目`
   console.log('render');
 };

@@ -54,6 +54,25 @@ function delTodo() {
       console.log(err)});
 }
 
+// 刪除全部已完成之事項
+function delAll(){
+  const completedAll = JSON.parse(localStorage.getItem('completedID'))
+  completedAll.forEach((item) => {
+    axios.delete(`${urlAPI}/todos/${item}`, {
+      headers: {
+        Authorization: token
+      }
+    })
+      .then (function (response) {
+        delAll();
+        getTodo();
+      })
+      .catch (function (err) {
+        console.log(err);
+      });
+  });
+};
+
 // 編輯待辦事項函式
 function editTodo() {
   axios.put(`${urlAPI}/todos/${editID}`, {
@@ -127,4 +146,8 @@ document.addEventListener('click', function (e) {
     toggleID = (e.target.closest(':not(input)').getAttribute('data-id'));
     toggleTodo(toggleID);
   }
+  // 刪除所有已完成項目
+  else if (e.target.className === 'clearAll') {
+    delAll();
+  };
 });
