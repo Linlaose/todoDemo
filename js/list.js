@@ -3,15 +3,12 @@ import { getTodo } from "./render.js";
 const add = document.querySelector('.todoList');
 const token = JSON.parse(localStorage.getItem('token'));
 const urlAPI = 'https://todoo.5xcamp.us';
-const todoList = document.querySelector('ul');
 
-let list = [];
 let delID = '';
 let editID = '';
 let toggleID = '';
 let editContent = '';
 let completedItem = [];
-let completedContent = "";
 
 
 // 增加待辦事項函式
@@ -165,7 +162,7 @@ document.addEventListener('click', function (e) {
   // 顯現未完成項目
   else if (e.target.className === 'pending') {
     // 抓取目前已完成項目ID之陣列並存為新的儲存陣列 (completedItem)
-    const completedItem = JSON.parse(localStorage.getItem('completedID'));
+    completedItem = JSON.parse(localStorage.getItem('completedID'));
     const li = document.querySelectorAll('li');
 
     // 將所有 li 標籤賦予 show 屬性值顯現出來，方便後面巢狀迴圈邏輯走向 (直接給 hide 屬性值而不用做其他操作)
@@ -185,7 +182,7 @@ document.addEventListener('click', function (e) {
   }
   // 顯現已完成項目 (邏輯與顯現未完成項目相同)
   else if (e.target.className === 'achieved') {
-    const completedItem = JSON.parse(localStorage.getItem('completedID'));
+    completedItem = JSON.parse(localStorage.getItem('completedID'));
     const li = document.querySelectorAll('li');
     li.forEach((item) => {
       item.setAttribute('class', 'hide');
