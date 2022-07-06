@@ -3,7 +3,6 @@ import { getTodo } from "./render.js";
 const add = document.querySelector('.todoList');
 const token = JSON.parse(localStorage.getItem('token'));
 const urlAPI = 'https://todoo.5xcamp.us';
-
 let delID = '';
 let editID = '';
 let toggleID = '';
