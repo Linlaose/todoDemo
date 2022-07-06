@@ -3,11 +3,16 @@ import { getTodo } from "./render.js";
 const add = document.querySelector('.todoList');
 const token = JSON.parse(localStorage.getItem('token'));
 const urlAPI = 'https://todoo.5xcamp.us';
+const todoList = document.querySelector('ul');
+
 let list = [];
 let delID = '';
 let editID = '';
 let toggleID = '';
 let editContent = '';
+let completedItem = [];
+let completedContent = "";
+
 
 // 增加待辦事項函式
 function addTodo() {
@@ -149,5 +154,47 @@ document.addEventListener('click', function (e) {
   // 刪除所有已完成項目
   else if (e.target.className === 'clearAll') {
     delAll();
-  };
+  }
+  // 顯現全部項目
+  else if (e.target.className === 'showAll') {
+    const li = document.querySelectorAll('li');
+    li.forEach((item) => {
+      item.removeAttribute('class');
+    })
+  }
+  // 顯現未完成項目
+  else if (e.target.className === 'pending') {
+    // 抓取目前已完成項目ID之陣列並存為新的儲存陣列 (completedItem)
+    const completedItem = JSON.parse(localStorage.getItem('completedID'));
+    const li = document.querySelectorAll('li');
+    // 將取出的新儲存陣列做巢狀迴圈進行資料比對
+
+    li.forEach((item) => {
+      item.setAttribute('class', 'show');
+    })
+
+    completedItem.forEach((completed) => {
+      li.forEach((item) => {
+        if (item.getAttribute('data-id') === completed){
+          item.setAttribute('class', 'hide');
+        }
+      })
+    });
+  }
+  // 顯現已完成項目
+  else if (e.target.className === 'achieved') {
+    const completedItem = JSON.parse(localStorage.getItem('completedID'));
+    const li = document.querySelectorAll('li');
+    li.forEach((item) => {
+      item.setAttribute('class', 'hide');
+    })
+
+    completedItem.forEach((completed) => {
+      li.forEach((item) => {
+        if (item.getAttribute('data-id') === completed){
+          item.setAttribute('class', 'show');
+        }
+      })
+    })
+  }
 });
