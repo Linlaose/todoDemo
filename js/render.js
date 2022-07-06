@@ -10,10 +10,21 @@ function renderPage() {
 
   userName.textContent = `${JSON.parse(localStorage.getItem('userName'))} 的待辦`;
 
+  list = JSON.parse(localStorage.getItem('list'));
   list.forEach(function (item, index) {
     el += `<li data-id=${item.id}>${item.content} <input type='checkbox' value='yes' class='checkStatus'> <input type='button' data-num=${index} value='edit'> <input type='button' data-num=${index} value='delete'></li>`;
   });
+  // 判斷項目是否完成並且將已完成和未完成項目以物件形式分開推入新的儲存陣列
+  // 未完成項目的陣列
+  const unCompleted = list.filter((item) => {
+    return item.completed_at === null
+  });
+  // 已完成項目的陣列
+  const completed = list.filter((item) => {
+    return item.completed_at !== null
+  })
 
+  console.log(unCompleted.length); // 未完成數
   todoList.innerHTML = el;
   console.log('render');
 };
@@ -42,24 +53,6 @@ if (document.body.className === 'todoPage') {
 }
 
 // 判斷已完成和未完成項目(未完成含項目數)
-// ================================================================
-// let completed = [];
-// let unCompleted = [];
-// let count = 0;
-// list = JSON.parse(localStorage.getItem('list'));
-
-// list.forEach(function (item) {
-//   if (item.completed_at !== null) {
-//     unCompleted.push(item.id);
-//     count++;
-//   }else{
-//     completed.push(item.id);
-//   }
-// });
-// console.log(count);
-// console.log(completed);
-// ================================================================
-
 // 清除已完成項目
 // ================================================================
 // completed.forEach(function (item) {
