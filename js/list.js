@@ -167,12 +167,14 @@ document.addEventListener('click', function (e) {
     // 抓取目前已完成項目ID之陣列並存為新的儲存陣列 (completedItem)
     const completedItem = JSON.parse(localStorage.getItem('completedID'));
     const li = document.querySelectorAll('li');
-    // 將取出的新儲存陣列做巢狀迴圈進行資料比對
 
+    // 將所有 li 標籤賦予 show 屬性值顯現出來，方便後面巢狀迴圈邏輯走向 (直接給 hide 屬性值而不用做其他操作)
     li.forEach((item) => {
       item.setAttribute('class', 'show');
     })
 
+    // 將取出的新儲存陣列做巢狀迴圈進行資料比對
+    // li 標籤的 data-id 只要符合目前儲存 id 的陣列資料，表示其為已完成項目，即賦予 hide 屬性值隱藏
     completedItem.forEach((completed) => {
       li.forEach((item) => {
         if (item.getAttribute('data-id') === completed){
@@ -181,7 +183,7 @@ document.addEventListener('click', function (e) {
       })
     });
   }
-  // 顯現已完成項目
+  // 顯現已完成項目 (邏輯與顯現未完成項目相同)
   else if (e.target.className === 'achieved') {
     const completedItem = JSON.parse(localStorage.getItem('completedID'));
     const li = document.querySelectorAll('li');
