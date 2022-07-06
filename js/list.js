@@ -102,7 +102,6 @@ function toggleTodo() {
     }
   })
     .then(function (response) {
-      console.log(response)
       getTodo();
     })
     .catch(function (err) {
